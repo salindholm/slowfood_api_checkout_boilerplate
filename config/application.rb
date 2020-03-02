@@ -29,14 +29,6 @@ module SlowfoodApi
           expose: %w(access-token expiry token-type uid client),
           max_age: 0
       end
-      config.generators do |generate|
-        generate.helper false
-        generate.assets false
-        generate.view_specs false
-        generate.helper_specs false
-        generate.routing_specs false
-        generate.controller_specs false
-      end
     end
   end
 end
