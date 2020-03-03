@@ -1,8 +1,7 @@
-class CreateMenuTables < ActiveRecord::Migration[6.0]
+class CreateProducts < ActiveRecord::Migration[6.0]
   def change
-    create_table :menu_tables do |t|
-
-      t.references :category
+    create_table :products do |t|
+      t.bigint :category_id
       t.string :name
       t.string :description
       t.float :price

@@ -1,7 +1,6 @@
 FactoryBot.define do
-  factory :menu_table do
-    id { "" }
-    category { nil }
+  factory :product do
+    category_id { "" }
     name { "MyString" }
     description { "MyString" }
     price { 1.5 }
