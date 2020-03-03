@@ -1,0 +1,3 @@
+class MenuTable < ApplicationRecord
+
+end
