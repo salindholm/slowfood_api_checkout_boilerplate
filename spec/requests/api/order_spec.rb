@@ -45,7 +45,9 @@ RSpec.describe Api::OrdersController, type: :request do
     # end
 
     it "responds with order total amount" do
+      binding.pry
       expect(JSON.parse(response.body)["order"]["total"]).to eq 500
+      
     end
   end
 end
