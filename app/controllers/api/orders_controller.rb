@@ -8,8 +8,13 @@ class Api::OrdersController < ApplicationController
   def update
     order = Order.find(params[:id])
     if params[:activity]
-      order.update(finalized: true)
-      render json: { message: "Your order will be ready in 30 minutes" }
+      payment_status = perform_stripe_payment
+      if payment_status == true
+        order.update(finalized: true)
+        render json: { paid: true, message: "Your order will be ready in 30 minutes" }
+      else
+        binding.pry
+      end
     else
       product = Product.find(params[:product_id])
       order.order_items.create(product: product)
@@ -18,6 +23,21 @@ class Api::OrdersController < ApplicationController
   end
 
   private
+
+  def perform_stripe_payment
+    order = Order.find(params[:id])
+    customer = Stripe::Customer.create(
+      email: params[:email],
+      source: params[:stripeToken],
+      description: 'slowfood client'
+    ) 
+    charge = Stripe::Charge.create(
+      customer: customer.id,
+      amount: order.order_total,
+      currency: 'sek'
+    )
+    charge
+  end
 
   def create_json_response(order)
     json = { order: OrderSerializer.new(order) }
