@@ -5,7 +5,7 @@ RSpec.describe Api::OrdersController, type: :request do
 
   before do
     put "/api/orders/#{order.id}",
-      params: { activity: "finalize", stripetoken: "12345", email: "testing@test.com" }
+      params: { activity: "finalize", stripeToken: StripeMock.create_test_helper.generate_card_token, email: "testing@test.com" }
   end
 
   it "user can pay for the order" do

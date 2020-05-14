@@ -33,10 +33,10 @@ class Api::OrdersController < ApplicationController
     ) 
     charge = Stripe::Charge.create(
       customer: customer.id,
-      amount: order.order_total,
+      amount: order.order_total.to_i * 100,
       currency: 'sek'
     )
-    charge
+    charge.paid
   end
 
   def create_json_response(order)
