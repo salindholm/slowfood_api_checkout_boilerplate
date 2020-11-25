@@ -1,4 +1,3 @@
-require 'rails_helper'
 RSpec.describe Product, type: :model do
   describe 'Products has db columns' do
     it  {is_expected.to have_db_column :id}
