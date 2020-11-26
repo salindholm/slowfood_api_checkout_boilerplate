@@ -5,6 +5,11 @@ RSpec.describe User, type: :model do
     it  { is_expected.to have_db_column :encrypted_password }
   end
 
+  describe 'Associations' do
+    it {is_expected.to belong_to :orders}
+  end 
+
+
   describe 'Factory' do
     it 'is expected to have valid Factory' do
       expect(create(:user)).to be_valid
