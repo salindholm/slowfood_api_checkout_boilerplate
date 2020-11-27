@@ -6,9 +6,8 @@ RSpec.describe User, type: :model do
   end
 
   describe 'Associations' do
-    it {is_expected.to belong_to :orders}
-  end 
-
+    it { is_expected.to have_many :orders}
+  end
 
   describe 'Factory' do
     it 'is expected to have valid Factory' do
